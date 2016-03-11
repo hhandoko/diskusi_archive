@@ -2,6 +2,8 @@
 
 Feel free to open any Pull Request (PR) or issues if you see things that can be improved or fixed.
 
+Visit [Diskusi Trello board] for its development roadmap.
+
 ## Prerequisites
 
 ### Develop and Compile Dependencies
@@ -9,7 +11,11 @@ Feel free to open any Pull Request (PR) or issues if you see things that can be 
 The following binaries / libraries need to be installed in order to compile the web application:
  
   - [Elixir Lang] v1.2
-  - [Phoenix Framework] v1.1.x 
+  - [Phoenix Framework] v1.1.x
+  - [Node.js] v4.3.x
+  - [npm] v3.8.x
+  - [Ruby] v2.2.x
+  - [Sass] v3.4.x
 
 ### Services (Database) Dependencies
 
@@ -60,13 +66,18 @@ Please read [CONTRIBUTING] for more details.
 `diskusi` is released under the MIT License. See the [LICENSE] file for further details.
 
 [CONTRIBUTING]: CONTRIBUTING.md
+[Diskusi Trello board]: https://trello.com/b/ZwfyfjkG/diskusi-web-application
 [Elixir Lang]: http://elixir-lang.org
 [fork-and-pull]: https://help.github.com/articles/using-pull-requests
 [LICENSE]: LICENSE.txt
-[Oracle VM VirtualBox]: https://www.virtualbox.org/
+[Node.js]: https://nodejs.org
+[npm]: https://www.npmjs.com
+[Oracle VM VirtualBox]: https://www.virtualbox.org
 [Phoenix Framework]: http://www.phoenixframework.org
 [PostgreSQL]: http://www.postgresql.org/download/
+[Ruby]: https://www.ruby-lang.org
+[Sass]: http://sass-lang.com
 [Slack]: https://slack.com
-[Vagrant]: https://www.vagrantup.com/
+[Vagrant]: https://www.vagrantup.com
 [vagrant-cachier]: https://github.com/fgrehm/vagrant-cachier
 [vagrant-vbguest]: https://github.com/dotless-de/vagrant-vbguest

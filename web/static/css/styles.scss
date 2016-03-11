@@ -1,5 +1,5 @@
-/**
- * File     : app.js
+/*!
+ * File     : styles.scss
  * License  :
  *   The MIT License (MIT)
  *
@@ -22,8 +22,44 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *   THE SOFTWARE.
- *
- * Notes    :
- *    Open Sans font by Steve Matteson
- *    Used under Apache 2.0 license
  */
+@import "bourbon";
+@import "neat";
+@import "fonts";
+
+// --------------------------------------------------------------------------------
+// Sticky Footer (via Flexbox)
+// --------------------------------------------------------------------------------
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+main[role="main"] {
+  flex: 1;
+}
+
+// --------------------------------------------------------------------------------
+// Header and Footer Styles
+// --------------------------------------------------------------------------------
+header, footer {
+  & > div.container {
+    @include outer-container;
+  }
+}
+
+// --------------------------------------------------------------------------------
+// Common Main / Body Content Styles
+// --------------------------------------------------------------------------------
+main[role="main"] {
+  & > section {
+    @include outer-container;
+  }
+
+  h1 {
+    font-family: 'Open Sans', sans-serif;
+  }
+}

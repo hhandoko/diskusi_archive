@@ -1,0 +1,26 @@
+/* TEAM */
+
+    Developer  : Herdy Handoko
+    Contact    : herdy.handoko [at] gmail [dot] com
+    BitBucket  : hhandoko
+    GitHub     : hhandoko
+    Twitter    : _hhandoko
+    From       : Perth, Western Australia, Australia and Singapore
+
+/* THANKS */
+
+    "If I have seen further, it is by standing on the shoulder of giants."
+    http://en.wikipedia.org/wiki/Standing_on_the_shoulders_of_giants
+
+    Big thanks to the following platforms, frameworks, and libraries
+    who made all this possible (in alphabetical order):
+
+    - Bourbon                     -- MIT License
+    - Brunch                      -- MIT License
+    - Elixir Language             -- Apache License, 2.0
+    - Erlang / OTP                -- Apache License, 2.0
+    - Neat                        -- MIT License
+    - Node.js                     -- BSD-like License (https://github.com/nodejs/node/blob/master/LICENSE)
+    - npm                         -- Artistic License 2.0
+    - Open Sans Web Font          -- Apache License, 2.0
+    - Phoenix Framework           -- MIT License

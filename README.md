@@ -48,6 +48,8 @@ The following Vagrant plugins are not mandatory, but help speed up box provision
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+*NOTE: Run `mix docs` to generate doc-comment documentation.*
+
 ## Contributing
 
 We follow the "[fork-and-pull]" Git workflow.

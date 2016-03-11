@@ -171,3 +171,6 @@ Temporary Items
 # Additional excludes for IntelliJ IDEA
 .idea/
 *.iml
+
+# Exclude ExDoc-generated documentation
+doc/

@@ -1,4 +1,1 @@
-<section>
-  <h1>Welcome to Diskusi!</h1>
-  <p>It is a team communication and discussion board inspired by <a href="https://slack.com/">Slack</a>.</p>
-</section>
+<div id="elm-main" class="container"></div>

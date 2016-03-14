@@ -24,8 +24,8 @@
 #   THE SOFTWARE.
 #
 # Notes    :
-#   Created by https://www.gitignore.io/api/elixir,phoenix,intellij,visualstudiocode,vagrant,windows,osx,linux
-#   Last updated 2016/03/08
+#   Created by https://www.gitignore.io/api/elixir,elmphoenix,intellij,visualstudiocode,vagrant,windows,osx,linux
+#   Last updated 2016/03/14
 #
 
 ### Elixir ###
@@ -34,6 +34,13 @@
 /deps
 erl_crash.dump
 *.ez
+
+
+### Elm ###
+# elm-package generated files
+elm-stuff/
+# elm-repl generated files
+repl-temp-*
 
 
 ### Phoenix ###
@@ -174,3 +181,6 @@ Temporary Items
 
 # Exclude ExDoc-generated documentation
 doc/
+
+# Exclude Elm-generates assets
+web/static/vendor/app.js

@@ -55,7 +55,7 @@ header, footer {
 // Common Main / Body Content Styles
 // --------------------------------------------------------------------------------
 main[role="main"] {
-  & > section {
+  & > section, & > div.container {
     @include outer-container;
   }
 

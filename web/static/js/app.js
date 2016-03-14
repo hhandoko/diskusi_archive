@@ -27,3 +27,5 @@
  *    Open Sans font by Steve Matteson
  *    Used under Apache 2.0 license
  */
+var elmDiv = document.getElementById('elm-main')
+  , elmApp = Elm.embed(Elm.App, elmDiv);

@@ -18,9 +18,20 @@
     - Bourbon                     -- MIT License
     - Brunch                      -- MIT License
     - Elixir Language             -- Apache License, 2.0
+    - Elm Language                -- BSD 3-Clause License
+    - elm-brunch (NPM)            -- MIT License
+    - elm-console                 -- BSD 3-Clause License
+    - elm-html                    -- BSD 3-Clause License
+    - elm-test                    -- MIT License
     - Erlang / OTP                -- Apache License, 2.0
+    - ExDoc                       -- Apache License, 2.0
+    - Hound                       -- MIT License
     - Neat                        -- MIT License
     - Node.js                     -- BSD-like License (https://github.com/nodejs/node/blob/master/LICENSE)
     - npm                         -- Artistic License 2.0
     - Open Sans Web Font          -- Apache License, 2.0
+    - PhantomJs                   -- BSD 3-Clause License
+    - phantomjs-prebuilt (NPM)    -- Apache License, 2.0
     - Phoenix Framework           -- MIT License
+    - Sass Language               -- MIT License
+    - sass-brunch (NPM)           -- MIT License

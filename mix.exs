@@ -40,7 +40,8 @@ defmodule Diskusi.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:earmark, "~> 0.1", only: :dev},
-     {:ex_doc, "~> 0.11", only: :dev}]
+     {:ex_doc, "~> 0.11", only: :dev},
+     {:hound, "~> 0.8"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

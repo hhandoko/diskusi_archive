@@ -1,4 +1,4 @@
-`diskusi` is a team communication and discussion board inspired by [Slack], primarily a platform for experimentation for learning [Elixir Lang], [Phoenix Framework], and the [Elm Lang].
+`diskusi` is a team communication and discussion board inspired by [Slack], primarily a platform for experimentation for learning [Elixir Lang], [Phoenix Framework], and [Elm Lang].
 
 Feel free to open any Pull Request (PR) or issues if you see things that can be improved or fixed.
 
@@ -38,15 +38,20 @@ The following Vagrant plugins are not mandatory, but help speed up box provision
 
 ## Setup
 
-  1. Configure the services with `vagrant up`
-  1. Install dependencies with `mix deps.get`
-  1. Install npm dependencies with `npm install`
-  1. Install Elm dependencies with `elm package install`
-  1. Create database with `mix ecto.create`
-  1. Migrate database with `mix ecto.migrate`
-  1. Seed the database with `mix run priv/repo/seeds.exs`
-  1. Run Elm tests with `npm test`
-  1. Run Elixir tests with `mix test`
+  1. Configure the services:
+     1. Run `vagrant up`
+  1. Install dependencies:
+     1. Install Phoenix dependencies with `mix deps.get`
+     1. Install npm dependencies with `npm install`
+     1. Install Elm dependencies with `elm package install`
+  1. Data store setup:
+     1. Create database with `mix ecto.create`
+     1. Migrate database with `mix ecto.migrate`
+     1. Seed the database with `mix run priv/repo/seeds.exs`
+  1. Run tests:
+     1. Start PhantomJs webdriver server with `npm run phantomjs`
+     1. Run Elm tests with `npm test`
+     1. Run Elixir tests with `mix test`
   1. Start application with `mix phoenix.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.

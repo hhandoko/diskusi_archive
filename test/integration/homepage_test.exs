@@ -1,5 +1,5 @@
 #
-# File     : test_helper.exs
+# File     : homepage_test.exs
 # License  :
 #   The MIT License (MIT)
 #
@@ -23,10 +23,16 @@
 #   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #   THE SOFTWARE.
 #
-Application.ensure_all_started(:hound)
+defmodule HoundTest do
+  use ExUnit.Case
+  use Hound.Helpers
 
-ExUnit.start
+  hound_session
 
-Mix.Task.run "ecto.create", ~w(-r Diskusi.Repo --quiet)
-Mix.Task.run "ecto.migrate", ~w(-r Diskusi.Repo --quiet)
-Ecto.Adapters.SQL.begin_test_transaction(Diskusi.Repo)
+  test "homepage", meta do
+    navigate_to("/")
+
+    assert visible_in_page?(~r/Welcome to Diskusi/)
+  end
+
+end

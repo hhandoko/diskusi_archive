@@ -29,7 +29,7 @@ use Mix.Config
 # you can enable the server option below.
 config :diskusi, Diskusi.Endpoint,
   http: [port: 4001],
-  server: false
+  server: true
 
 # Print only warnings and errors during test
 config :logger, level: :warn

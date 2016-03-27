@@ -26,7 +26,7 @@
 defmodule Diskusi.PageControllerTest do
   use Diskusi.ConnCase, async: true
 
-  test "GET / should render landing page", %{conn: conn} do
+  test "`GET /` should render landing page", %{conn: conn} do
     conn = get conn, page_path(conn, :index)
     assert html_response(conn, 200) =~ "Welcome to Diskusi"
   end

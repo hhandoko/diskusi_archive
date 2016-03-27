@@ -37,25 +37,24 @@ defmodule Diskusi.AuthController do
   GET /register
   """
   def register(conn, _params) do
-    render conn, "register.html"
+    conn |> render("register.html")
   end
 
   @doc """
   GET /login
   """
   def login(conn, _params) do
-    render conn, "login.html"
+    conn |> render("login.html")
   end
 
   @doc """
   POST /login
   """
   def process_login(conn, %{"email" => email, "password" => password}) do
-    user = Diskusi.Repo.get_by(Diskusi.User, %{email: email, password: password})
-    if user != nil do
-      redirect conn, to: home_path(conn, :index)
+    if user = Diskusi.Repo.get_by(Diskusi.User, %{email: email, password: password}) do
+      conn |> redirect(to: home_path(conn, :index))
     else
-      render conn, "login.html"
+      conn |> render("login.html")
     end
   end
 

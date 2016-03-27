@@ -4,7 +4,7 @@
   <form id="login_form" method="post" action="<%= auth_path(@conn, :process_login) %>">
     <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
 
-    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
 
     <div>
       <label for="email">Email</label>

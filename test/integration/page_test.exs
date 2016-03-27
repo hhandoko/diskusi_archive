@@ -27,11 +27,21 @@ defmodule PageTest do
   use ExUnit.Case
   use Hound.Helpers
 
+  use Diskusi.IntegrationCase
+
   hound_session
 
-  test "user should be able to open the landing page", meta do
-    navigate_to "/"
+  test "user should be able to open the landing page" do
+    # Arrange
+    # ~~~~
+    # N/A
 
+    # Act
+    # ~~~~
+    navigate_to page_path(conn, :index)
+
+    # Assert
+    # ~~~~
     assert visible_in_page? ~r/Welcome to Diskusi/
   end
 

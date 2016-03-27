@@ -27,6 +27,8 @@ defmodule AuthenticationTest do
   use ExUnit.Case
   use Hound.Helpers
 
+  use Diskusi.IntegrationCase
+
   hound_session
 
   # --------------------------------------------------------------------------------
@@ -39,7 +41,7 @@ defmodule AuthenticationTest do
 
     # Act
     # ~~~~
-    navigate_to "/login"
+    navigate_to auth_path(conn, :login)
 
     # Fill login form and submit
     input_into_field {:id, "email"}, "joe@bloggs.com"
@@ -58,7 +60,7 @@ defmodule AuthenticationTest do
 
     # Act
     # ~~~~
-    navigate_to "/login"
+    navigate_to auth_path(conn, :login)
 
     # Fill login form and submit
     input_into_field {:id, "email"}, "notjoe@bloggs.com"

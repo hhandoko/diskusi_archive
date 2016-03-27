@@ -4,6 +4,8 @@
   <form id="register_form" method="post" action="<%= auth_path(@conn, :register) %>">
     <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
 
+    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+
     <div>
       <label for="email">Email</label>
       <input type="email" id="email" name="email" placeholder="email@address.com" required />

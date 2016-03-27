@@ -24,11 +24,28 @@
 #   THE SOFTWARE.
 #
 defmodule Diskusi.AuthControllerTest do
-  use Diskusi.ConnCase
+  use Diskusi.ConnCase, async: true
 
-  # Registration page should render
-  test "GET /register", %{conn: conn} do
-    conn = get conn, "/register"
+  # Login tests
+  # ~~~~
+  test "`GET /register` should render registration page", %{conn: conn} do
+    conn = get conn, auth_path(conn, :register)
     assert html_response(conn, 200) =~ "Register"
   end
+
+  test "`GET /login` should render page", %{conn: conn} do
+    conn = get conn, auth_path(conn, :login)
+    assert html_response(conn, 200) =~ "Login"
+  end
+
+  test "`POST /login` should return to login page when given invalid credentials", %{conn: conn} do
+    conn = post conn, auth_path(conn, :process_login), %{email: "notjoe@bloggs.com", password: "jb"}
+    assert html_response(conn, 200) =~ "Login"
+  end
+
+  test "`POST /login` should redirect to the User homepage when given correct credentials", %{conn: conn} do
+    conn = post conn, auth_path(conn, :process_login), %{email: "joe@bloggs.com", password: "jb"}
+    assert redirected_to(conn) == home_path(conn, :index)
+  end
+
 end

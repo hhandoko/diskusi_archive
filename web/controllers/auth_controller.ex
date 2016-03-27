@@ -30,6 +30,7 @@ defmodule Diskusi.AuthController do
 
   use Diskusi.Web, :controller
 
+  # Use static page layout
   plug :put_layout, "static.html"
 
   @doc """
@@ -38,4 +39,24 @@ defmodule Diskusi.AuthController do
   def register(conn, _params) do
     render conn, "register.html"
   end
+
+  @doc """
+  GET /login
+  """
+  def login(conn, _params) do
+    render conn, "login.html"
+  end
+
+  @doc """
+  POST /login
+  """
+  def process_login(conn, %{"email" => email, "password" => password}) do
+    user = Diskusi.Repo.get_by(Diskusi.User, %{email: email, password: password})
+    if user != nil do
+      redirect conn, to: home_path(conn, :index)
+    else
+      render conn, "login.html"
+    end
+  end
+
 end

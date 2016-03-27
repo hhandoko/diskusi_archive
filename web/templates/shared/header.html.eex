@@ -4,6 +4,7 @@
 
     <nav>
       <a href="<%= auth_path(@conn, :register) %>">Register</a>
+      <a href="<%= auth_path(@conn, :login) %>">Login</a>
     </nav>
   </div>
 </header>

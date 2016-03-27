@@ -1,5 +1,5 @@
 #
-# File     : error_view_test.exs
+# File     : auth_view_test.exs
 # License  :
 #   The MIT License (MIT)
 #
@@ -23,20 +23,17 @@
 #   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #   THE SOFTWARE.
 #
-defmodule Diskusi.ErrorViewTest do
+defmodule Diskusi.AuthViewTest do
   use Diskusi.ConnCase, async: true
 
   import Phoenix.View
 
-  test "renders 404.html" do
-    assert render_to_string(Diskusi.ErrorView, "404.html", []) == "Page not found"
+  test "renders login.html" do
+    assert render_to_string(Diskusi.AuthView, "login.html", %{conn: conn}) =~ "Login"
   end
 
-  test "render 500.html" do
-    assert render_to_string(Diskusi.ErrorView, "500.html", []) == "Server internal error"
+  test "renders register.html" do
+    assert render_to_string(Diskusi.AuthView, "register.html", %{conn: conn}) =~ "Register"
   end
 
-  test "render any other" do
-    assert render_to_string(Diskusi.ErrorView, "505.html", []) == "Server internal error"
-  end
 end

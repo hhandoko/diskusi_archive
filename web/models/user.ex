@@ -1,5 +1,5 @@
 #
-# File     : error_view_test.exs
+# File     : user.ex
 # License  :
 #   The MIT License (MIT)
 #
@@ -23,20 +23,11 @@
 #   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #   THE SOFTWARE.
 #
-defmodule Diskusi.ErrorViewTest do
-  use Diskusi.ConnCase, async: true
+defmodule Diskusi.User do
+  @moduledoc """
+  User data access model.
+  """
 
-  import Phoenix.View
+  defstruct [:id, :name, :username, :email, :password]
 
-  test "renders 404.html" do
-    assert render_to_string(Diskusi.ErrorView, "404.html", []) == "Page not found"
-  end
-
-  test "render 500.html" do
-    assert render_to_string(Diskusi.ErrorView, "500.html", []) == "Server internal error"
-  end
-
-  test "render any other" do
-    assert render_to_string(Diskusi.ErrorView, "505.html", []) == "Server internal error"
-  end
 end

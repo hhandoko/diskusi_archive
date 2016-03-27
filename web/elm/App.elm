@@ -35,10 +35,6 @@ main =
 -- VIEW
 view =
   div []
-    [ h1 [] [ text "Welcome to Diskusi" ]
-    , p []
-        [ text "`diskusi` is a team communication and discussion board inspired by "
-        , a [ href "https://slack.com" ] [ text "Slack" ]
-        , text "."
-        ]
+    [ p []
+        [ text "Hello User" ]
     ]

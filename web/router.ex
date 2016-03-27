@@ -42,7 +42,16 @@ defmodule Diskusi.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    # Authentication routes
+    # ~~~~
     get "/register", AuthController, :register
+    get "/login", AuthController, :login
+    post "/login", AuthController, :process_login
+
+    # User home routes
+    # ~~~~
+    get "/home", HomeController, :index
   end
 
   # Other scopes may use custom stacks.

@@ -1,5 +1,5 @@
 #
-# File     : error_view_test.exs
+# File     : home_controller_test.exs
 # License  :
 #   The MIT License (MIT)
 #
@@ -23,20 +23,11 @@
 #   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #   THE SOFTWARE.
 #
-defmodule Diskusi.ErrorViewTest do
+defmodule Diskusi.HomeControllerTest do
   use Diskusi.ConnCase, async: true
 
-  import Phoenix.View
-
-  test "renders 404.html" do
-    assert render_to_string(Diskusi.ErrorView, "404.html", []) == "Page not found"
-  end
-
-  test "render 500.html" do
-    assert render_to_string(Diskusi.ErrorView, "500.html", []) == "Server internal error"
-  end
-
-  test "render any other" do
-    assert render_to_string(Diskusi.ErrorView, "505.html", []) == "Server internal error"
+  test "`GET /home` should render User home page", %{conn: conn} do
+    conn = get conn, home_path(conn, :index)
+    assert html_response(conn, 200) =~ "<div id=\"elm-main\" class=\"container\"></div>"
   end
 end

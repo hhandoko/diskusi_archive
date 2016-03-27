@@ -1,5 +1,5 @@
 #
-# File     : homepage_test.exs
+# File     : page_test.exs
 # License  :
 #   The MIT License (MIT)
 #
@@ -23,16 +23,16 @@
 #   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #   THE SOFTWARE.
 #
-defmodule HoundTest do
+defmodule PageTest do
   use ExUnit.Case
   use Hound.Helpers
 
   hound_session
 
-  test "homepage", meta do
-    navigate_to("/")
+  test "user should be able to open the landing page", meta do
+    navigate_to "/"
 
-    assert visible_in_page?(~r/Welcome to Diskusi/)
+    assert visible_in_page? ~r/Welcome to Diskusi/
   end
 
 end

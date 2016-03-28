@@ -1,6 +1,6 @@
 <header>
   <div class="container">
-    <a href="/">Diskusi</a>
+    <a href="<%= page_path(@conn, :index) %>">Diskusi</a>
 
     <nav>
       <a href="<%= auth_path(@conn, :register) %>">Register</a>

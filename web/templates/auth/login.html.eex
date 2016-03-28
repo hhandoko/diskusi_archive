@@ -1,23 +1,21 @@
 <section>
   <h1>Login</h1>
 
-  <form id="login_form" method="post" action="<%= auth_path(@conn, :process_login) %>">
+  <%= form_for @conn, auth_path(@conn, :process_login), [as: :login_form, method: :post], fn f -> %>
     <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
 
-    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-
     <div>
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="email@address.com" required />
+      <%= label f, :email, "Email", [for: :email] %>
+      <%= email_input f, :email, [id: :email, name: :email, placeholder: "email@address.com", required: :required] %>
       <strong><abbr title="required">*</abbr></strong>
     </div>
 
     <div>
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
+      <%= label f, :password, "Password", [for: :password] %>
+      <%= password_input f, :password, [id: :password, name: :password, required: :required] %>
       <strong><abbr title="required">*</abbr></strong>
     </div>
 
-    <button type="submit" id="submit">Login</button>
-  </form>
+    <%= submit "Login" %>
+  <% end %>
 </section>

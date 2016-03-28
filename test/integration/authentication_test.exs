@@ -46,7 +46,7 @@ defmodule AuthenticationTest do
     # Fill login form and submit
     input_into_field {:id, "email"}, "joe@bloggs.com"
     input_into_field {:id, "password"}, "jb"
-    click {:css, "form button[type=submit]"}
+    click {:css, "form input[type=submit]"}
 
     # Assert
     # ~~~~
@@ -65,7 +65,7 @@ defmodule AuthenticationTest do
     # Fill login form and submit
     input_into_field {:id, "email"}, "notjoe@bloggs.com"
     input_into_field {:id, "password"}, "jb"
-    click {:css, "form button[type=submit]"}
+    click {:css, "form input[type=submit]"}
 
     # Assert
     # ~~~~

@@ -32,6 +32,12 @@ defmodule Mix.Tasks.Elm.Test do
 
   @shortdoc "Run Elm project's tests"
 
+  @doc """
+  Execute the Mix task.
+
+  ## Parameters
+    - args (Ignored): Task parameters.
+  """
   def run(_args) do
     # Run Elm tests via `npm test`
     System.cmd "npm", ["test"], into: IO.stream(:stdio, :line)

@@ -29,22 +29,24 @@ defmodule Diskusi.AuthControllerTest do
   # Login tests
   # ~~~~
   test "`GET /register` should render registration page", %{conn: conn} do
-    conn = get conn, auth_path(conn, :register)
+    conn = conn |> get(auth_path(conn, :register))
     assert html_response(conn, :ok) =~ "Register"
   end
 
   test "`GET /login` should render page", %{conn: conn} do
-    conn = get conn, auth_path(conn, :login)
+    conn = conn |> get(auth_path(conn, :login))
     assert html_response(conn, :ok) =~ "Login"
   end
 
   test "`POST /login` should return to login page when given invalid credentials", %{conn: conn} do
-    conn = post conn, auth_path(conn, :process_login), %{email: "notjoe@bloggs.com", password: "jb"}
+    user = Repo.get(User, "1")
+    conn = conn |> post(auth_path(conn, :process_login), %{email: user.email <> ".au", password: user.password })
     assert html_response(conn, :ok) =~ "Login"
   end
 
   test "`POST /login` should redirect to the User homepage when given correct credentials", %{conn: conn} do
-    conn = post conn, auth_path(conn, :process_login), %{email: "joe@bloggs.com", password: "jb"}
+    user = Repo.get(User, "1")
+    conn = conn |> post(auth_path(conn, :process_login), %{email: user.email, password: user.password})
     assert redirected_to(conn) == home_path(conn, :index)
   end
 
@@ -55,7 +57,7 @@ defmodule Diskusi.AuthControllerTest do
       conn
       |> guardian_login(user)
       |> get(auth_path(conn, :logout))
-    assert html_response(conn, :found)
+    assert redirected_to(conn) == auth_path(conn, :login)
   end
 
 end

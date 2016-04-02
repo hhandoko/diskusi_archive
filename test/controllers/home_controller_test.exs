@@ -30,7 +30,7 @@ defmodule Diskusi.HomeControllerTest do
   alias Diskusi.Repo
 
   test "`GET /home` without an active session should return User to login screen", %{conn: conn} do
-    conn = get conn, home_path(conn, :index)
+    conn = conn |> get(home_path(conn, :index))
     assert html_response(conn, :unauthorized) =~ "You need to be logged in to view the page"
   end
 

@@ -53,12 +53,16 @@ defmodule Diskusi.ConnCase do
       # Reverse routing support
       import Diskusi.Router.Helpers
 
+      # Guardian login helper functions
+      #import Diskusi.Guardian.Helpers
+
       alias Diskusi.Repo
       alias Diskusi.User
 
       # The default endpoint for testing
       @endpoint Diskusi.Endpoint
 
+      # FIXME: Duplicate function in `integration_case.ex`, unable to extract to a separate module as it's throwing `RuntimeError`
       # Guardian login helper functions
       # ~~~~
       # We need a way to get into the connection to login a user

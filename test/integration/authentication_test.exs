@@ -31,6 +31,24 @@ defmodule AuthenticationTest do
 
   hound_session
 
+  @doc """
+  Logs in the user.
+
+  ## Parameters
+    - conn: Plug connection.
+    - email: User email, defaults to "joe@bloggs"
+    - password: User password, defaults to "jb"
+  """
+  def do_login(conn, email \\ "joe@bloggs.com", password \\ "jb") do
+    # Go to the login page
+    navigate_to auth_path(conn, :login)
+
+    # Fill login form and submit
+    input_into_field {:id, "email"}, email
+    input_into_field {:id, "password"}, password
+    click {:css, "form input[type=submit]"}
+  end
+
   # --------------------------------------------------------------------------------
   # Login
   # --------------------------------------------------------------------------------
@@ -41,12 +59,7 @@ defmodule AuthenticationTest do
 
     # Act
     # ~~~~
-    navigate_to auth_path(conn, :login)
-
-    # Fill login form and submit
-    input_into_field {:id, "email"}, "joe@bloggs.com"
-    input_into_field {:id, "password"}, "jb"
-    click {:css, "form input[type=submit]"}
+    conn |> do_login("joe@bloggs.com", "jb")
 
     # Assert
     # ~~~~
@@ -60,12 +73,21 @@ defmodule AuthenticationTest do
 
     # Act
     # ~~~~
-    navigate_to auth_path(conn, :login)
+    conn |> do_login("joe@bloggs.com.au", "jb")
 
-    # Fill login form and submit
-    input_into_field {:id, "email"}, "notjoe@bloggs.com"
-    input_into_field {:id, "password"}, "jb"
-    click {:css, "form input[type=submit]"}
+    # Assert
+    # ~~~~
+    assert visible_in_page? ~r/Login/
+  end
+
+  test "user should be redirected to landing page after logout" do
+    # Arrange
+    # ~~~~
+    conn |> do_login
+
+    # Act
+    # ~~~~
+    navigate_to auth_path(conn, :logout)
 
     # Assert
     # ~~~~

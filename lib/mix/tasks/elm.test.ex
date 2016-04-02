@@ -1,5 +1,5 @@
 #
-# File     : test_helper.exs
+# File     : elm.test.ex
 # License  :
 #   The MIT License (MIT)
 #
@@ -23,20 +23,17 @@
 #   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #   THE SOFTWARE.
 #
-# Run Elm tests
-Mix.shell.info ""
-Mix.shell.info "Elm Tests:"
-Mix.shell.info "----------"
-Mix.Task.run "elm.test"
+defmodule Mix.Tasks.Elm.Test do
+  @moduledoc """
+  Mix task to run Elm tests via `npm test` shell command.
+  """
 
-# Run Elixir + Phoenix tests
-Mix.shell.info "Elixir + Phoenix Tests:"
-Mix.shell.info "-----------------------"
-Application.ensure_all_started(:hound)
+  use Mix.Task
 
-ExUnit.start
+  @shortdoc "Run Elm project's tests"
 
-# TODO: Disabled until a real implementation is provided
-#Mix.Task.run "ecto.create", ~w(-r Diskusi.Repo --quiet)
-#Mix.Task.run "ecto.migrate", ~w(-r Diskusi.Repo --quiet)
-#Ecto.Adapters.SQL.begin_test_transaction(Diskusi.Repo)
+  def run(_args) do
+    # Run Elm tests via `npm test`
+    System.cmd "npm", ["test"], into: IO.stream(:stdio, :line)
+  end
+end

@@ -50,7 +50,6 @@ The following Vagrant plugins are not mandatory, but help speed up box provision
      1. Seed the database with `mix run priv/repo/seeds.exs`
   1. Run tests:
      1. Start PhantomJs webdriver server with `npm run phantomjs`
-     1. Run Elm tests with `npm test`
      1. Run Elixir tests with `mix test`
   1. Start application with `mix phoenix.server`
 

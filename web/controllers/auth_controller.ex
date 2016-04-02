@@ -30,8 +30,16 @@ defmodule Diskusi.AuthController do
 
   use Diskusi.Web, :controller
 
+  alias Diskusi.AuthView
+  alias Diskusi.Repo
+  alias Diskusi.User
+
   # Use static page layout
   plug :put_layout, "static.html"
+
+  # Scrub empty inputs from the form data
+  plug :scrub_params, "email" when action in [:process_login]
+  plug :scrub_params, "password" when action in [:process_login]
 
   @doc """
   GET /register
@@ -51,11 +59,37 @@ defmodule Diskusi.AuthController do
   POST /login
   """
   def process_login(conn, %{"email" => email, "password" => password}) do
-    if user = Diskusi.Repo.get_by(Diskusi.User, %{email: email, password: password}) do
-      conn |> redirect(to: home_path(conn, :index))
+    if user = Repo.get_by(User, %{email: email, password: password}) do
+      conn
+      |> Guardian.Plug.sign_in(user, :token)
+      |> redirect(to: home_path(conn, :index))
     else
       conn |> render("login.html")
     end
+  end
+
+  @doc """
+  GET /logout
+  """
+  def logout(conn, _params) do
+    conn
+    |> Guardian.Plug.sign_out
+    |> put_flash(:info, "Logged out")
+    |> redirect(to: auth_path(conn, :login))
+  end
+
+  @doc """
+  Internal controller method called from unauthenticated sessions
+  prompting User to login.
+  """
+  def unauthenticated_session(conn, _params) do
+    # Use specific to support Guardian's `EnsureAuthenticated` plug
+    # See: https://github.com/ueberauth/guardian/issues/37
+    conn
+    |> put_flash(:info, "You need to be logged in to view the page")
+    |> put_view(AuthView)
+    |> put_status(:unauthorized)
+    |> render("login.html")
   end
 
 end

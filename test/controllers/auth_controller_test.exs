@@ -30,22 +30,32 @@ defmodule Diskusi.AuthControllerTest do
   # ~~~~
   test "`GET /register` should render registration page", %{conn: conn} do
     conn = get conn, auth_path(conn, :register)
-    assert html_response(conn, 200) =~ "Register"
+    assert html_response(conn, :ok) =~ "Register"
   end
 
   test "`GET /login` should render page", %{conn: conn} do
     conn = get conn, auth_path(conn, :login)
-    assert html_response(conn, 200) =~ "Login"
+    assert html_response(conn, :ok) =~ "Login"
   end
 
   test "`POST /login` should return to login page when given invalid credentials", %{conn: conn} do
     conn = post conn, auth_path(conn, :process_login), %{email: "notjoe@bloggs.com", password: "jb"}
-    assert html_response(conn, 200) =~ "Login"
+    assert html_response(conn, :ok) =~ "Login"
   end
 
   test "`POST /login` should redirect to the User homepage when given correct credentials", %{conn: conn} do
     conn = post conn, auth_path(conn, :process_login), %{email: "joe@bloggs.com", password: "jb"}
     assert redirected_to(conn) == home_path(conn, :index)
+  end
+
+  test "`GET /logout` should return User to the login page with flash message", %{conn: conn} do
+    # TODO: Need to refine the test to check for content, ATM only the redirection page is returned for assertion
+    user = Repo.get(User, "1")
+    conn =
+      conn
+      |> guardian_login(user)
+      |> get(auth_path(conn, :logout))
+    assert html_response(conn, :found)
   end
 
 end

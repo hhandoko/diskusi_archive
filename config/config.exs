@@ -55,5 +55,16 @@ config :phoenix, :generators,
   migration: true,
   binary_id: false
 
+# Configure Guardian auth
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "Diskusi",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+  secret_key: "changeme",
+  serializer: Diskusi.GuardianSerializer
+
+
 # Start Hound for PhantomJs
 config :hound, driver: "phantomjs"

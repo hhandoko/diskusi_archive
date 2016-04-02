@@ -26,6 +26,7 @@
 defmodule Diskusi.Router do
   use Diskusi.Web, :router
 
+  # Default browser stack
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -34,12 +35,22 @@ defmodule Diskusi.Router do
     plug :put_secure_browser_headers
   end
 
+  # This plug will look for a Guardian token in the session in the default location
+  # Then it will attempt to load the resource found in the JWT
+  # If it doesn't find a JWT in the default location it doesn't do anything
+  pipeline :browser_auth do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", Diskusi do
-    pipe_through :browser # Use the default browser stack
+    # Use the default `browser` stack
+    # Pipe through `browser_auth` to fetch logged in people
+    pipe_through [:browser, :browser_auth]
 
     get "/", PageController, :index
 
@@ -48,6 +59,7 @@ defmodule Diskusi.Router do
     get "/register", AuthController, :register
     get "/login", AuthController, :login
     post "/login", AuthController, :process_login
+    get "/logout", AuthController, :logout
 
     # User home routes
     # ~~~~

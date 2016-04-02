@@ -26,8 +26,20 @@
 defmodule Diskusi.HomeControllerTest do
   use Diskusi.ConnCase, async: true
 
-  test "`GET /home` should render User home page", %{conn: conn} do
+  alias Diskusi.User
+  alias Diskusi.Repo
+
+  test "`GET /home` without an active session should return User to login screen", %{conn: conn} do
     conn = get conn, home_path(conn, :index)
+    assert html_response(conn, :unauthorized) =~ "You need to be logged in to view the page"
+  end
+
+  test "`GET /home` with an active session should render User home page", %{conn: conn} do
+    user = Repo.get(User, "1")
+    conn =
+      conn
+      |> guardian_login(user)
+      |> get(home_path(conn, :index))
     assert html_response(conn, 200) =~ "<div id=\"elm-main\" class=\"container\"></div>"
   end
 end

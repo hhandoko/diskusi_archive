@@ -1,5 +1,5 @@
 #
-# File     : home_controller.ex
+# File     : guardian_serializer.ex
 # License  :
 #   The MIT License (MIT)
 #
@@ -23,23 +23,20 @@
 #   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #   THE SOFTWARE.
 #
-defmodule Diskusi.HomeController do
+defmodule Diskusi.GuardianSerializer do
   @moduledoc """
-  Logged-in User controller.
+  Guardian authentication JSON web token serializer.
   """
 
-  use Diskusi.Web, :controller
+  @behaviour Guardian.Serializer
 
-  alias Diskusi.AuthController
+  alias Diskusi.Repo
+  alias Diskusi.User
 
-  # Guardian auth
-  plug Guardian.Plug.EnsureAuthenticated, %{ on_failure: { AuthController, :unauthenticated_session } } when action in [:index]
+  def for_token(user = %User{}), do: { :ok, "User:#{user.id}" }
+  def for_token(_), do: { :error, "Unknown resource type" }
 
-  @doc """
-  GET /home
-  """
-  def index(conn, _params) do
-    conn |> render("index.html")
-  end
+  def from_token("User:" <> id), do: { :ok, Repo.get(User, id) }
+  def from_token(_), do: { :error, "Unknown resource type" }
 
 end

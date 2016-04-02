@@ -33,15 +33,16 @@ defmodule Diskusi.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [{:phoenix, "~> 1.1.4"},
-     {:postgrex, ">= 0.0.0"},
      {:phoenix_ecto, "~> 2.0"},
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
+     {:hound, "~> 0.8"},
      {:earmark, "~> 0.1", only: :dev},
      {:ex_doc, "~> 0.11", only: :dev},
-     {:hound, "~> 0.8"}]
+     {:gettext, "~> 0.9"},
+     {:guardian, "~> 0.10.0"},
+     {:postgrex, ">= 0.0.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

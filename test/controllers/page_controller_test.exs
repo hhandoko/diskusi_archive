@@ -28,6 +28,6 @@ defmodule Diskusi.PageControllerTest do
 
   test "`GET /` should render landing page", %{conn: conn} do
     conn = get conn, page_path(conn, :index)
-    assert html_response(conn, 200) =~ "Welcome to Diskusi"
+    assert html_response(conn, :ok) =~ "Welcome to Diskusi"
   end
 end
